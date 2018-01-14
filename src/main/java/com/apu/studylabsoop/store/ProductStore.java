@@ -5,33 +5,23 @@
  */
 package com.apu.studylabsoop.store;
 
+import com.apu.studylabsoop.materials.IWeight;
 import java.util.Arrays;
 
 /**
  *
  * @author apu
  */
-public class ProductStore {
-    private Timber[] arr = new Timber[3];
-    private int count = 0;
+public class ProductStore extends AbstractStore {
     
-    public Timber[] getTimbers() {
-        return Arrays.copyOf(arr, count);
-    }
-    
-    public void add(Timber newTimber) {
-        if (arr.length == count) {
-            arr = Arrays.copyOf(arr, count +count/2);
-        }
-        arr[count++] = newTimber;
+    public void add(IWeight newElement) {
+        super.add(newElement);
     }
     
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Timber directory:\n");
-        for (int i = 0; i < count; i++) {
-            sb.append(arr[i]).append("\n");
-        }
+        StringBuilder sb = new StringBuilder("Product Store:\n");
+        sb.append(super.toString());
         return sb .toString();
     }
 

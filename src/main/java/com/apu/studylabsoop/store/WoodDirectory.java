@@ -5,6 +5,7 @@
  */
 package com.apu.studylabsoop.store;
 
+import com.apu.studylabsoop.materials.Wood;
 import java.util.Arrays;
 
 /**

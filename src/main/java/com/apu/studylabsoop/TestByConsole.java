@@ -5,9 +5,12 @@
  */
 package com.apu.studylabsoop;
 
+import com.apu.studylabsoop.materials.AbstractForm;
+import com.apu.studylabsoop.materials.IWeight;
 import com.apu.studylabsoop.store.ProductStore;
-import com.apu.studylabsoop.store.Timber;
-import com.apu.studylabsoop.store.Wood;
+import com.apu.studylabsoop.materials.Timber;
+import com.apu.studylabsoop.materials.Waste;
+import com.apu.studylabsoop.materials.Wood;
 import com.apu.studylabsoop.store.WoodDirectory;
 import com.apu.studylabsoop.utils.Log;
 import java.io.BufferedReader;
@@ -29,11 +32,12 @@ public class TestByConsole {
     ProductStore productStore = new ProductStore();
     
     public void start() {        
-        String[] menuItems = new String[4];
+        String[] menuItems = new String[5];
         menuItems[0] = "1. Add wood.";
 	menuItems[1] = "2. Add timber.";
-	menuItems[2] = "3. Calculate sum weight.";
-	menuItems[3] = "4. Exit.";
+        menuItems[2] = "3. Add waste.";
+	menuItems[3] = "4. Calculate sum weight.";
+	menuItems[4] = "5. Exit.";
         String menuHeader = "Select operation and enter number:";
 
         while(true) {
@@ -61,9 +65,12 @@ public class TestByConsole {
                         addTimber();
                         break;
                 case 3:
-                        calculateSumWeight();
+                        addWaste();
                         break;
                 case 4:
+                        calculateSumWeight();
+                        break;
+                case 5:
                         return;
                 default:
                         continue;
@@ -120,12 +127,27 @@ public class TestByConsole {
         }
     }
     
+    private void addWaste() { 
+        String readStr;
+        try {
+            System.out.println("Enter weight(float) for new waste:");
+            readStr = reader.readLine();
+            Float weight = Float.parseFloat(readStr);
+            Waste waste = new Waste(weight);
+            productStore.add(waste);
+            System.out.println("New waste: " + waste.toString());
+        } catch (IOException ex) {
+            log.debug(classname,ExceptionUtils.getStackTrace(ex));
+        }
+    }
+    
     private void calculateSumWeight() {
         System.out.println("Available timbers:");
         Float summ = new Float(0);
-        for(Timber timber:productStore.getTimbers()) {
-            System.out.println(timber.toString());
-            summ += timber.weight();
+        for(Object form:productStore.getArr()) {
+            System.out.println(form.toString());
+            if(form instanceof IWeight)
+                summ += ((IWeight)form).weight();
         }
         System.out.println("Summary weight :" + summ);
     }

@@ -9,7 +9,7 @@ package com.apu.studylabsoop;
  *
  * @author apu
  */
-public class Lab2 {
+public class Lab {
     
     public static void main(String[] args) {
         TestByConsole testByConsole = new TestByConsole();
