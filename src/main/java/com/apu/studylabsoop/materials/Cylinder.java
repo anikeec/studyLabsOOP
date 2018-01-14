@@ -14,6 +14,10 @@ public class Cylinder extends AbstractForm{
     private final float diameter;
 
     public Cylinder(Wood wood, float length, float diameter) {
+        if((length < 0) || (length == 0))
+            throw new IllegalArgumentException("Error length");
+        if((diameter < 0) || (diameter == 0))
+            throw new IllegalArgumentException("Error diameter");
         this.wood = wood;
         this.length = length;
         this.diameter = diameter;

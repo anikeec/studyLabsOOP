@@ -15,6 +15,12 @@ public class Timber extends AbstractForm {
     private final float width;
     
     public Timber(Wood wood, float length, float height, float width) {
+        if((length < 0) || (length == 0))
+            throw new IllegalArgumentException("Error length");
+        if((height < 0) || (height == 0))
+            throw new IllegalArgumentException("Error height");
+        if((width < 0) || (width == 0))
+            throw new IllegalArgumentException("Error width");
         this.wood = wood;
         this.length = length;
         this.height = height;

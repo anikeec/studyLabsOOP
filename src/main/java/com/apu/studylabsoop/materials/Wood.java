@@ -20,9 +20,11 @@ public class Wood {
     }
     
     public Wood(int id, String name, float density) {
-            this.id = id;
-            this.name = name;
-            this.density = density;
+        if((density < 0) || (density == 0))
+            throw new IllegalArgumentException("Error density");
+        this.id = id;
+        this.name = name;
+        this.density = density;
     }
     
     public int getId() {

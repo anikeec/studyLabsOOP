@@ -17,6 +17,8 @@ public class Waste implements IWeight {
     }
 
     public Waste(float weight) {
+        if((weight < 0) || (weight == 0))
+            throw new IllegalArgumentException("Error weight");
         this.weight = weight;
     }
 

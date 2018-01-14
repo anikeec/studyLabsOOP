@@ -88,7 +88,13 @@ public class TestByConsole {
             System.out.println("Enter density(float) for new wood:");
             readStr = reader.readLine();
             Float woodDensity = Float.parseFloat(readStr);
-            Wood wood = new Wood(woodName, woodDensity);
+            Wood wood;
+            try {
+                wood = new Wood(woodName, woodDensity);
+            } catch (IllegalArgumentException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                return;
+            }
             woodDirectory.add(wood);
             System.out.println("New wood: " + wood.toString());
         } catch (IOException ex) {
@@ -116,10 +122,16 @@ public class TestByConsole {
             System.out.println("Enter width(float) for new timber:");
             readStr = reader.readLine();
             Float width = Float.parseFloat(readStr);
-            Timber timber = new Timber(woodDirectory.get(woodId),
+            Timber timber;
+            try {
+                timber = new Timber(woodDirectory.get(woodId),
                                         length, 
                                         height, 
                                         width);
+            } catch (IllegalArgumentException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                return;
+            }
             productStore.add(timber);
             System.out.println("New timber: " + timber.toString());
         } catch (IOException ex) {
@@ -133,7 +145,13 @@ public class TestByConsole {
             System.out.println("Enter weight(float) for new waste:");
             readStr = reader.readLine();
             Float weight = Float.parseFloat(readStr);
-            Waste waste = new Waste(weight);
+            Waste waste;
+            try {
+                waste = new Waste(weight);
+            } catch (IllegalArgumentException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                return;
+            }
             productStore.add(waste);
             System.out.println("New waste: " + waste.toString());
         } catch (IOException ex) {
