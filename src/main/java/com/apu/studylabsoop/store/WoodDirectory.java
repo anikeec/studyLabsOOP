@@ -6,16 +6,13 @@
 package com.apu.studylabsoop.store;
 
 import com.apu.studylabsoop.materials.Wood;
-import java.util.Arrays;
 
 /**
  *
  * @author apu
  */
-public class WoodDirectory {
-    private Wood[] arr = new Wood[3];    
+public class WoodDirectory extends AbstractStore {   
     
-    private int count = 0;
     {
         arr[0] = new Wood("Larch", 1.1f);
         arr[1] = new Wood("Spruce", 0.9f);
@@ -23,14 +20,10 @@ public class WoodDirectory {
         count = 3;
     }
     
-    public Wood[] getWoods() {
-            return Arrays.copyOf(arr, count);
-    }
-    
     public Wood get(int id) {
         for (int i = 0; i < count; i++) {
-            if (arr[i].getId() == id) {
-                return arr[i];
+            if (((Wood)arr[i]).getId() == id) {
+                return (Wood)arr[i];
             }
         }
         return null;
@@ -40,13 +33,11 @@ public class WoodDirectory {
         if (get(newWood.getId()) != null) {
             return false;
         }
-        if (arr.length == count) {
-            arr = Arrays.copyOf(arr, count +count/2);
-        }
-        arr[count++] = newWood;
+        super.add(newWood);
         return true;
     }
     
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Wood directory:\n");
         for (int i = 0; i < count; i++) {

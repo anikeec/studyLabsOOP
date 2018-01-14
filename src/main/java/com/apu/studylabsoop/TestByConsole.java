@@ -98,8 +98,8 @@ public class TestByConsole {
     
     private void addTimber() {
         System.out.println("Available woods:");
-        for(Wood wood:woodDirectory.getWoods()) {
-            System.out.println(wood.toString());
+        for(Object object:woodDirectory.getArr()) {
+            System.out.println(object.toString());
         }
         System.out.println();
         String readStr;

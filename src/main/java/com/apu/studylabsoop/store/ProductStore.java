@@ -6,7 +6,6 @@
 package com.apu.studylabsoop.store;
 
 import com.apu.studylabsoop.materials.IWeight;
-import java.util.Arrays;
 
 /**
  *
